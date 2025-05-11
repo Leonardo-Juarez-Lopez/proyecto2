@@ -6,7 +6,7 @@ class Cconexion {
         $username = 'LEONARDOJL';
         $password = 'LEONARDOJL2301';
         $puerto = 1433;
-
+        //hola
         try {
             // ODBC Driver 18 requiere parámetros de cifrado, por eso se agregan Encrypt y TrustServerCertificate
             $conn = new PDO(
