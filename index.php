@@ -6,9 +6,6 @@
     <title>ANALIZADOR LEXICO</title>
 </head>
 <body>
-    <?php
-        include_once("conexion.php");
-        $conexion = Cconexion::Cconectar(); // Nombre correcto del método
-    ?>
+
 </body>
 </html>

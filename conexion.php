@@ -1,24 +1,35 @@
 <?php
-class Cconexion {
-    public static function Cconectar() {
-        $host = 'localhost\SQLEXPRESS2';
-        $dbname = 'PuntoVentaCine';
-        $username = 'LEONARDOJL';
-        $password = 'LEONARDOJL2301';
-        $puerto = 1433;
-        //hola
-        try {
-            // ODBC Driver 18 requiere parámetros de cifrado, por eso se agregan Encrypt y TrustServerCertificate
-            $conn = new PDO(
-                "sqlsrv:Server=$host,$puerto;Database=$dbname;Encrypt=no;TrustServerCertificate=yes", 
-                $username, 
-                $password
-            );
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            return $conn;
-        } catch (PDOException $e) {
-            die("Error grave: " . $e->getMessage());
-        }
-    }
+// Nombre del servidor SQL Server (en este caso, tu máquina se llama "ADESS")
+$serverName = "LEONARDOJL\MSSQLSERVER2";
+
+// Opciones de conexión necesarias para acceder a SQL Server
+$connectionOptions = array(
+    // Nombre de la base de datos a la que te quieres conectar
+    "Database" => "PuntoVentaCine",
+
+    // Usuario con permisos sobre la base de datos (en este caso, el usuario 'sa')
+    "Uid" => "sa",
+
+    // Contraseña del usuario (la que configuraste previamente)
+    "PWD" => "LEONARDOJL2301",
+
+    // Especifica el conjunto de caracteres (UTF-8 asegura soporte para tildes, eñes, etc.)
+    "CharacterSet" => "UTF-8"
+);
+
+// Intentamos establecer la conexión usando sqlsrv_connect()
+// Esta función devuelve un recurso de conexión si todo va bien, o false si falla
+$conn = sqlsrv_connect($serverName, $connectionOptions);
+
+// Comprobamos si la conexión fue exitosa
+if ($conn) {
+    // Si la conexión tuvo éxito, mostramos un mensaje en pantalla
+    echo "✅ Conexión exitosa a SQL Server.";
+} else {
+    // Si falló, mostramos un mensaje de error
+    echo "❌ Error en la conexión.<br>";
+
+    // Mostramos detalles del error específico proporcionado por SQL Server
+    die(print_r(sqlsrv_errors(), true));
 }
 ?>
