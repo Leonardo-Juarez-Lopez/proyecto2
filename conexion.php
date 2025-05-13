@@ -21,15 +21,5 @@ $connectionOptions = array(
 // Esta función devuelve un recurso de conexión si todo va bien, o false si falla
 $conn = sqlsrv_connect($serverName, $connectionOptions);
 
-// Comprobamos si la conexión fue exitosa
-if ($conn) {
-    // Si la conexión tuvo éxito, mostramos un mensaje en pantalla
-    echo "✅ Conexión exitosa a SQL Server.";
-} else {
-    // Si falló, mostramos un mensaje de error
-    echo "❌ Error en la conexión.<br>";
 
-    // Mostramos detalles del error específico proporcionado por SQL Server
-    die(print_r(sqlsrv_errors(), true));
-}
 ?>
