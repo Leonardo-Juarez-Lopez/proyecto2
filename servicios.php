@@ -11,7 +11,7 @@
         <h2>Cartelera Semanal</h2>
         
         <?php
-        $sql = "SELECT F.fecha_hora, P.titulo, S.nombre_sala, F.precio 
+        $sql = "SELECT F.fecha_hora, P.titulo, S.nombre_sala
                 FROM Funcion F
                 JOIN Pelicula P ON F.id_pelicula = P.id_pelicula
                 JOIN Sala S ON F.id_sala = S.id_sala
@@ -27,7 +27,6 @@
                     <h3>{$funcion['titulo']}</h3>
                     <p>Sala: {$funcion['nombre_sala']}</p>
                     <p>Fecha: $fecha</p>
-                    <p>Precio: $ {$funcion['precio']}</p>
                   </div>";
         }
         echo "</div>";

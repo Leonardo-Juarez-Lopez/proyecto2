@@ -18,7 +18,7 @@
             $genero = $_POST['genero'];
             $sinopsis = $_POST['sinopsis'];
             
-            $sql = "INSERT INTO Pelicula (titulo, duración_minutos, clasificación, genero, sinopsis)
+            $sql = "INSERT INTO Pelicula (titulo, duracion_minutos, clasificacion, genero, sinopsis)
                     VALUES (?, ?, ?, ?, ?)";
             $params = array($titulo, $duracion, $clasificacion, $genero, $sinopsis);
             $stmt = sqlsrv_query($conn, $sql, $params);
