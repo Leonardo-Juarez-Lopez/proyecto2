@@ -1,4 +1,4 @@
-/* styles.css */
+/* Reset básico */
 * {
     margin: 0;
     padding: 0;
@@ -6,56 +6,91 @@
 }
 
 body {
-    height: 100vh;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f8ff;
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden;
 }
 
-/* Encabezado */
+/* Encabezado fijo */
 .ENCABE2A-DO {
     background: #FFD700;
-    color: #000000;
+    color: #000;
     padding: 1rem;
-    font-size: 2rem;
+    font-size: 1.8rem;
     text-align: center;
-    position: relative;
-    z-index: 2;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    height: 62px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Menú Hamburguesa */
+/* Botón hamburguesa */
 .menu-toggle {
     position: absolute;
     left: 1rem;
     top: 50%;
     transform: translateY(-50%);
-    cursor: pointer;
-    background: none;
+    background: transparent;
     border: none;
-    padding: 0.5rem;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    cursor: pointer;
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .hamburger {
     display: block;
-    width: 30px;
+    width: 25px;
     height: 3px;
     background: #000;
     position: relative;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
 }
 
 .hamburger::before,
 .hamburger::after {
     content: '';
     position: absolute;
-    width: 30px;
+    width: 25px;
     height: 3px;
     background: #000;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
 }
 
-.hamburger::before { top: -8px; }
-.hamburger::after { top: 8px; }
+.hamburger::before {
+    transform: translateY(-8px);
+}
 
-/* Menú Lateral */
+.hamburger::after {
+    transform: translateY(8px);
+}
+
+.hamburger.active {
+    background: transparent;
+}
+
+.hamburger.active::before {
+    transform: rotate(45deg) translateY(0);
+}
+
+.hamburger.active::after {
+    transform: rotate(-45deg) translateY(0);
+}
+
+/* Menú lateral */
 .MENU {
     background: #1E90FF;
     width: 250px;
@@ -63,9 +98,10 @@ body {
     position: fixed;
     left: -250px;
     top: 62px;
-    transition: all 0.3s;
-    z-index: 1;
-    padding: 1rem;
+    transition: all 0.3s ease;
+    z-index: 999;
+    padding: 1rem 0;
+    overflow-y: auto;
 }
 
 .MENU.active {
@@ -73,45 +109,63 @@ body {
 }
 
 .MENU ul {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
     list-style: none;
+}
+
+.MENU li {
+    margin-bottom: 0.5rem;
 }
 
 .MENU a {
     color: white;
     text-decoration: none;
-    padding: 1rem;
+    padding: 0.8rem 1.5rem;
     display: block;
-    border-radius: 5px;
     transition: all 0.3s;
+    font-size: 1rem;
 }
 
 .MENU a:hover {
-    background: #000080;
+    background: rgba(0, 0, 0, 0.2);
 }
 
-/* Contenido Principal */
+/* Contenido principal */
 .CONTENIDO {
     padding: 2rem;
     min-height: calc(100vh - 62px);
-    background: #f0f8ff;
-    transition: margin 0.3s;
+    margin-top: 62px;
+    transition: all 0.3s ease;
 }
 
 .CONTENIDO.active {
     margin-left: 250px;
 }
 
+/* Overlay para móviles */
+.menu-overlay {
+    display: none;
+    position: fixed;
+    top: 62px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    cursor: pointer;
+}
+
+.MENU.active + .menu-overlay {
+    display: block;
+}
+
 /* Estilos para formularios */
 form {
     max-width: 500px;
-    margin: 1rem auto;
+    margin: 2rem auto;
     background: white;
     padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
 form label {
@@ -120,28 +174,30 @@ form label {
     font-weight: bold;
 }
 
-form input, 
-form select, 
+form input,
+form select,
 form textarea {
     width: 100%;
     padding: 0.8rem;
     border: 1px solid #ddd;
     border-radius: 4px;
     margin-bottom: 1rem;
+    font-family: inherit;
 }
 
 form button {
     background: #1E90FF;
     color: white;
-    padding: 1rem 2rem;
+    padding: 1rem;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background 0.3s;
+    width: 100%;
 }
 
 form button:hover {
-    background: #000080;
+    background: #0066CC;
 }
 
 /* Alertas */
@@ -154,26 +210,13 @@ form button:hover {
 .alert.success {
     background: #d4edda;
     color: #155724;
+    border: 1px solid #c3e6cb;
 }
 
 .alert.error {
     background: #f8d7da;
     color: #721c24;
-}
-
-/* Cartelera */
-.cartelera {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1rem;
-    padding: 1rem;
-}
-
-.funcion {
-    background: white;
-    padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border: 1px solid #f5c6cb;
 }
 
 /* Responsive */
@@ -182,8 +225,30 @@ form button:hover {
         padding: 1rem;
     }
     
+    .CONTENIDO.active {
+        margin-left: 0;
+        position: relative;
+        left: 250px;
+        width: calc(100% - 250px);
+    }
+    
     form {
-        padding: 1rem;
+        padding: 1.5rem;
     }
 }
 
+@media (max-width: 480px) {
+    .ENCABE2A-DO {
+        font-size: 1.5rem;
+    }
+    
+    .CONTENIDO.active {
+        left: 200px;
+        width: calc(100% - 200px);
+    }
+    
+    .MENU {
+        width: 200px;
+        left: -200px;
+    }
+}

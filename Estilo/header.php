@@ -10,7 +10,10 @@
         const hamburger = document.querySelector('.hamburger');
         
         menu.classList.toggle('active');
-        contenido.classList.toggle('active');
+        if(contenido) contenido.classList.toggle('active');
         hamburger.classList.toggle('active');
+        
+        // Bloquear scroll cuando el menú está abierto
+        document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
     }
 </script>
