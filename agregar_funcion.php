@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <?php include('Estilo\header.php'); ?>
+    <?php include('Estilo/header.php'); ?>
 </head>
 <body>
-    <?php include('Estilo\menu.php'); ?>
+    <?php include('Estilo/menu.php'); ?>
     
     <main class="CONTENIDO" id="contenido">
         <h2>Programar Función</h2>

@@ -5,11 +5,12 @@
     box-sizing: border-box;
 }
 
-body {
+body, html {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f0f8ff;
     color: #333;
     line-height: 1.6;
+    width: 100%;
     overflow-x: hidden;
 }
 
@@ -17,8 +18,8 @@ body {
 .ENCABE2A-DO {
     background: #FFD700;
     color: #000;
-    padding: 1rem;
-    font-size: 1.8rem;
+    padding: 1rem 1.5rem;
+    font-size: clamp(1.3rem, 2vw, 1.8rem);
     text-align: center;
     position: fixed;
     width: 100%;
@@ -60,8 +61,7 @@ body {
     transition: all 0.3s ease;
 }
 
-.hamburger::before,
-.hamburger::after {
+.hamburger::before, .hamburger::after {
     content: '';
     position: absolute;
     width: 25px;
@@ -83,17 +83,18 @@ body {
 }
 
 .hamburger.active::before {
-    transform: rotate(45deg) translateY(0);
+    transform: rotate(45deg);
 }
 
 .hamburger.active::after {
-    transform: rotate(-45deg) translateY(0);
+    transform: rotate(-45deg);
 }
 
 /* Menú lateral */
 .MENU {
     background: #1E90FF;
     width: 250px;
+    max-width: 80vw;
     height: calc(100vh - 62px);
     position: fixed;
     left: -250px;
@@ -134,7 +135,8 @@ body {
     padding: 2rem;
     min-height: calc(100vh - 62px);
     margin-top: 62px;
-    transition: all 0.3s ease;
+    width: 100%;
+    transition: margin-left 0.3s ease;
 }
 
 .CONTENIDO.active {
@@ -160,7 +162,8 @@ body {
 
 /* Estilos para formularios */
 form {
-    max-width: 500px;
+    width: 100%;
+    max-width: 800px;
     margin: 2rem auto;
     background: white;
     padding: 2rem;
@@ -221,17 +224,22 @@ form button:hover {
 
 /* Responsive */
 @media (max-width: 768px) {
-    .CONTENIDO {
-        padding: 1rem;
+    .MENU {
+        width: 220px;
+        left: -220px;
     }
-    
+
+    .MENU.active {
+        left: 0;
+    }
+
     .CONTENIDO.active {
         margin-left: 0;
         position: relative;
-        left: 250px;
-        width: calc(100% - 250px);
+        left: 220px;
+        width: calc(100% - 220px);
     }
-    
+
     form {
         padding: 1.5rem;
     }
@@ -241,14 +249,301 @@ form button:hover {
     .ENCABE2A-DO {
         font-size: 1.5rem;
     }
-    
-    .CONTENIDO.active {
-        left: 200px;
-        width: calc(100% - 200px);
-    }
-    
+
     .MENU {
         width: 200px;
         left: -200px;
     }
+
+    .MENU.active {
+        left: 0;
+    }
+
+    .CONTENIDO.active {
+        left: 200px;
+        width: calc(100% - 200px);
+    }
+
+    form {
+        padding: 1rem;
+    }
+}
+
+/* Estilos aislados para la sección de configuración de precios */
+.config-precios {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  background: #f9f9f9;
+}
+
+.config-precios .container-two-tables {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  align-items: start;
+}
+
+.config-precios .table-container {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.config-precios .table-container h2 {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: #333;
+  border-left: 4px solid #2196F3;
+  padding-left: 0.5rem;
+  background: #f5f5f5;
+}
+
+.config-precios table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.config-precios table thead th {
+  background: #2196F3;
+  color: #fff;
+  text-align: left;
+  padding: 0.75rem;
+  font-weight: normal;
+}
+
+.config-precios table tbody td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #eee;
+}
+
+.config-precios table tbody td:first-child {
+  color: #555;
+}
+
+.config-precios input[type=number] {
+  width: 100%;
+  max-width: 120px;
+  padding: 0.3rem 0.5rem;
+  font-size: 0.95rem;
+  text-align: right;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  color: #333;
+  box-sizing: border-box;
+}
+
+.config-precios input[type=number]::-webkit-outer-spin-button,
+.config-precios input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.config-precios input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.config-precios input[type=number]:focus {
+  outline: none;
+  border-color: #66afe9;
+  box-shadow: 0 0 0 3px rgba(102, 175, 233, 0.3);
+}
+
+.config-precios button[type=submit] {
+  display: block;
+  width: 100%;
+  margin: 2rem auto 0 auto;
+  background: #2196F3;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.config-precios button[type=submit]:hover {
+  background: #1976D2;
+}
+
+.config-precios .alert.success {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.descuentos-box {
+    max-width: 100%; /* o usa 100% si quieres que sea completamente fluido */
+    margin: 80px auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.descuentos-box h2, .descuentos-box h3 {
+    text-align: center;
+    color: #1E90FF;
+    margin-bottom: 1.5rem;
+}
+
+.tabla-descuentos {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+}
+
+.tabla-descuentos th, .tabla-descuentos td {
+    border: 1px solid #ccc;
+    padding: 0.7rem;
+    text-align: left;
+}
+
+.tabla-descuentos th {
+    background-color: #1E90FF;
+    color: white;
+}
+
+.tabla-descuentos input[type="text"],
+.tabla-descuentos input[type="number"],
+.tabla-descuentos input[type="date"] {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.btn-descuento {
+    background-color: #1E90FF;
+    color: white;
+    padding: 0.7rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    display: block;
+    margin: 0 auto;
+}
+
+.btn-descuento:hover {
+    background-color: #0066CC;
+}
+
+.alert.success {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 1rem;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.form-agregar input {
+    margin-bottom: 1rem;
+}
+
+.usuarios-sql {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f8ff;
+    padding: 2rem;
+    margin-top: 62px;
+    color: #333;
+}
+
+.usuarios-sql .descuentos-box {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.usuarios-sql h2, .usuarios-sql h3 {
+    text-align: center;
+    color: #1E90FF;
+    margin-bottom: 1.5rem;
+}
+
+        .usuarios-sql .tabla-descuentos {
+            table-layout: fixed;
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .usuarios-sql .tabla-descuentos th,
+        .usuarios-sql .tabla-descuentos td {
+            border: 1px solid #ccc;
+            padding: 0.7rem;
+        }
+
+        .usuarios-sql .tabla-descuentos th {
+            background-color: #1E90FF;
+            color: white;
+        }
+
+        .usuarios-sql .tabla-descuentos th:nth-child(1),
+        .usuarios-sql .tabla-descuentos td:nth-child(1) {
+            width: 30%;
+        }
+
+        .usuarios-sql .tabla-descuentos th:nth-child(2),
+        .usuarios-sql .tabla-descuentos td:nth-child(2) {
+            width: 20%;
+            text-align: center;
+        }
+
+        .usuarios-sql .tabla-descuentos th:nth-child(3),
+        .usuarios-sql .tabla-descuentos td:nth-child(3) {
+            width: 30%;
+            text-align: center;
+        }
+
+        .usuarios-sql .btn-descuento {
+            background-color: #1E90FF;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .usuarios-sql .btn-descuento:hover {
+            background-color: #0066CC;
+        }
+
+.usuarios-sql .alert.success {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 1rem;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.usuarios-sql .alert.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 1rem;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    text-align: center;
 }
