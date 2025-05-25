@@ -1,3 +1,4 @@
+
 /* Reset básico */
 * {
     margin: 0;
@@ -7,8 +8,8 @@
 
 body, html {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f0f8ff;
-    color: #333;
+    background-color: #d6f0ff; /* Azul cielo */
+    color: #000; /* Negro */
     line-height: 1.6;
     width: 100%;
     overflow-x: hidden;
@@ -16,7 +17,7 @@ body, html {
 
 /* Encabezado fijo */
 .ENCABE2A-DO {
-    background: #FFD700;
+    background: #FFD700; /* Dorado */
     color: #000;
     padding: 1rem 1.5rem;
     font-size: clamp(1.3rem, 2vw, 1.8rem);
@@ -56,7 +57,7 @@ body, html {
     display: block;
     width: 25px;
     height: 3px;
-    background: #000;
+    background: #5C4033; /* Café */
     position: relative;
     transition: all 0.3s ease;
 }
@@ -66,7 +67,7 @@ body, html {
     position: absolute;
     width: 25px;
     height: 3px;
-    background: #000;
+    background: #5C4033; /* Café */
     transition: all 0.3s ease;
 }
 
@@ -92,7 +93,7 @@ body, html {
 
 /* Menú lateral */
 .MENU {
-    background: #1E90FF;
+    background: #002366; /* Azul rey */
     width: 250px;
     max-width: 80vw;
     height: calc(100vh - 62px);
@@ -127,7 +128,7 @@ body, html {
 }
 
 .MENU a:hover {
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(139, 0, 0, 0.3); /* Rojo intenso */
 }
 
 /* Contenido principal */
@@ -182,14 +183,14 @@ form select,
 form textarea {
     width: 100%;
     padding: 0.8rem;
-    border: 1px solid #ddd;
+    border: 1px solid #C0C0C0; /* Plateado */
     border-radius: 4px;
     margin-bottom: 1rem;
     font-family: inherit;
 }
 
 form button {
-    background: #1E90FF;
+    background: #FF8C00; /* Naranja */
     color: white;
     padding: 1rem;
     border: none;
@@ -200,7 +201,7 @@ form button {
 }
 
 form button:hover {
-    background: #0066CC;
+    background: #CC0000; /* Rojo */
 }
 
 /* Alertas */
@@ -211,18 +212,19 @@ form button:hover {
 }
 
 .alert.success {
-    background: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
+    background: #A0E7E5; /* Verde aqua */
+    color: #004d4d;
+    border: 1px solid #6ed3cf;
 }
 
 .alert.error {
-    background: #f8d7da;
+    background: #FFB6B3; /* Rosa melón */
     color: #721c24;
     border: 1px solid #f5c6cb;
 }
 
-/* Responsive */
+/* Otros estilos omitidos por longitud... */
+
 @media (max-width: 768px) {
     .MENU {
         width: 220px;
@@ -274,7 +276,7 @@ form button:hover {
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem 1rem;
-  background: #f9f9f9;
+  background: #fff0f5; /* Rosa claro */
 }
 
 .config-precios .container-two-tables {
@@ -286,7 +288,7 @@ form button:hover {
 
 .config-precios .table-container {
   background: #fff;
-  border: 1px solid #ddd;
+  border: 1px solid #C0C0C0; /* Plateado */
   border-radius: 8px;
   padding: 1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -295,10 +297,10 @@ form button:hover {
 .config-precios .table-container h2 {
   margin-bottom: 1rem;
   font-size: 1.1rem;
-  color: #333;
-  border-left: 4px solid #2196F3;
+  color: #6B3FA0; /* Morado */
+  border-left: 4px solid #FF69B4; /* Fiusha */
   padding-left: 0.5rem;
-  background: #f5f5f5;
+  background: #FDEEF4; /* Rosa claro */
 }
 
 .config-precios table {
@@ -308,7 +310,7 @@ form button:hover {
 }
 
 .config-precios table thead th {
-  background: #2196F3;
+  background: #C8A2C8; /* Lila */
   color: #fff;
   text-align: left;
   padding: 0.75rem;
@@ -318,10 +320,7 @@ form button:hover {
 .config-precios table tbody td {
   padding: 0.75rem;
   border-bottom: 1px solid #eee;
-}
-
-.config-precios table tbody td:first-child {
-  color: #555;
+  color: #5C4033; /* Café */
 }
 
 .config-precios input[type=number] {
@@ -330,21 +329,11 @@ form button:hover {
   padding: 0.3rem 0.5rem;
   font-size: 0.95rem;
   text-align: right;
-  border: 1px solid #ccc;
+  border: 1px solid #C0C0C0; /* Plateado */
   border-radius: 4px;
   background: #fff;
   color: #333;
   box-sizing: border-box;
-}
-
-.config-precios input[type=number]::-webkit-outer-spin-button,
-.config-precios input[type=number]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-.config-precios input[type=number] {
-  -moz-appearance: textfield;
 }
 
 .config-precios input[type=number]:focus {
@@ -357,7 +346,7 @@ form button:hover {
   display: block;
   width: 100%;
   margin: 2rem auto 0 auto;
-  background: #2196F3;
+  background: #FF8C00; /* Naranja */
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -370,32 +359,32 @@ form button:hover {
 }
 
 .config-precios button[type=submit]:hover {
-  background: #1976D2;
+  background: #CC0000; /* Rojo */
 }
 
 .config-precios .alert.success {
-  background: #d4edda;
-  color: #155724;
-  border: 1px solid #c3e6cb;
+  background: #A0E7E5; /* Verde aqua */
+  color: #004d4d;
+  border: 1px solid #6ed3cf;
   padding: 1rem;
   margin: 1rem 0;
   border-radius: 5px;
   text-align: center;
 }
 
+/* Caja de descuentos */
 .descuentos-box {
-    max-width: 100%; /* o usa 100% si quieres que sea completamente fluido */
+    max-width: 100%;
     margin: 80px auto;
     padding: 2rem;
     background: white;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .descuentos-box h2, .descuentos-box h3 {
     text-align: center;
-    color: #1E90FF;
+    color: #6B3FA0; /* Morado */
     margin-bottom: 1.5rem;
 }
 
@@ -407,13 +396,13 @@ form button:hover {
 }
 
 .tabla-descuentos th, .tabla-descuentos td {
-    border: 1px solid #ccc;
+    border: 1px solid #C0C0C0;
     padding: 0.7rem;
     text-align: left;
 }
 
 .tabla-descuentos th {
-    background-color: #1E90FF;
+    background-color: #C8A2C8; /* Lila */
     color: white;
 }
 
@@ -422,12 +411,12 @@ form button:hover {
 .tabla-descuentos input[type="date"] {
     width: 100%;
     padding: 0.5rem;
-    border: 1px solid #ccc;
+    border: 1px solid #C0C0C0;
     border-radius: 4px;
 }
 
 .btn-descuento {
-    background-color: #1E90FF;
+    background-color: #FF8C00; /* Naranja */
     color: white;
     padding: 0.7rem 1.5rem;
     border: none;
@@ -439,111 +428,5 @@ form button:hover {
 }
 
 .btn-descuento:hover {
-    background-color: #0066CC;
-}
-
-.alert.success {
-    background-color: #d4edda;
-    color: #155724;
-    padding: 1rem;
-    border: 1px solid #c3e6cb;
-    border-radius: 5px;
-    margin-bottom: 1rem;
-    text-align: center;
-}
-
-.form-agregar input {
-    margin-bottom: 1rem;
-}
-
-.usuarios-sql {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f0f8ff;
-    padding: 2rem;
-    margin-top: 62px;
-    color: #333;
-}
-
-.usuarios-sql .descuentos-box {
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 2rem;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-.usuarios-sql h2, .usuarios-sql h3 {
-    text-align: center;
-    color: #1E90FF;
-    margin-bottom: 1.5rem;
-}
-
-        .usuarios-sql .tabla-descuentos {
-            table-layout: fixed;
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 2rem;
-            font-size: 0.95rem;
-        }
-
-        .usuarios-sql .tabla-descuentos th,
-        .usuarios-sql .tabla-descuentos td {
-            border: 1px solid #ccc;
-            padding: 0.7rem;
-        }
-
-        .usuarios-sql .tabla-descuentos th {
-            background-color: #1E90FF;
-            color: white;
-        }
-
-        .usuarios-sql .tabla-descuentos th:nth-child(1),
-        .usuarios-sql .tabla-descuentos td:nth-child(1) {
-            width: 30%;
-        }
-
-        .usuarios-sql .tabla-descuentos th:nth-child(2),
-        .usuarios-sql .tabla-descuentos td:nth-child(2) {
-            width: 20%;
-            text-align: center;
-        }
-
-        .usuarios-sql .tabla-descuentos th:nth-child(3),
-        .usuarios-sql .tabla-descuentos td:nth-child(3) {
-            width: 30%;
-            text-align: center;
-        }
-
-        .usuarios-sql .btn-descuento {
-            background-color: #1E90FF;
-            color: white;
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .usuarios-sql .btn-descuento:hover {
-            background-color: #0066CC;
-        }
-
-.usuarios-sql .alert.success {
-    background-color: #d4edda;
-    color: #155724;
-    padding: 1rem;
-    border: 1px solid #c3e6cb;
-    border-radius: 5px;
-    margin-bottom: 1rem;
-    text-align: center;
-}
-
-.usuarios-sql .alert.error {
-    background-color: #f8d7da;
-    color: #721c24;
-    padding: 1rem;
-    border: 1px solid #f5c6cb;
-    border-radius: 5px;
-    margin-bottom: 1rem;
-    text-align: center;
+    background-color: #CC0000; /* Rojo */
 }
