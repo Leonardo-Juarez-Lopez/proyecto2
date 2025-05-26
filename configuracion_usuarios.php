@@ -1,6 +1,13 @@
 <?php
 ob_start();
 include('conexion.php'); ?>
+<?php
+session_start();
+if (!isset($_SESSION["usuario"]) || $_SESSION["usuario"] !== "sa") {
+    header("Location: login.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>

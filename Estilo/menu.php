@@ -16,5 +16,6 @@
         <li><a href="configuracion_precios.php">CONFIGURACIÓN DE PRECIOS</a></li>
         <li><a href="configuracion_descuentos.php">CONFIGURACIÓN DE DESCUENTOS</a></li>
         <li><a href="configuracion_usuarios.php">CONFIGURACIÓN DE USUARIOS</a></li>
+        <li><a href="logout.php">CERRAR SESIÓN</a></li>
     </ul>
 </nav>
