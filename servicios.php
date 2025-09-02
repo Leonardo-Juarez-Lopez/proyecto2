@@ -9,7 +9,7 @@ if (!isset($_SESSION["usuario"]) || $_SESSION["usuario"] !== "sa") {
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <?php include('Estilo\header.php'); ?>
+    <?php include('Estilo/header.php'); ?>
     <style>
         body {
             background-color: #f5f5f5;
@@ -23,13 +23,7 @@ if (!isset($_SESSION["usuario"]) || $_SESSION["usuario"] !== "sa") {
             margin: 0 auto;
             padding: 1rem;
         }
-        .columna-salas {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            padding: 1rem;
-        }
-        .columna-funciones {
+        .columna-salas, .columna-funciones {
             background: white;
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -122,6 +116,23 @@ if (!isset($_SESSION["usuario"]) || $_SESSION["usuario"] !== "sa") {
             margin-left: auto;
             margin-right: auto;
         }
+        .pdf-boton {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .pdf-boton a button {
+            padding: 0.8rem 1.5rem;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .pdf-boton a button:hover {
+            background-color: #218838;
+        }
         @media (max-width: 768px) {
             .cartelera-columnas {
                 grid-template-columns: 1fr;
@@ -140,25 +151,27 @@ if (!isset($_SESSION["usuario"]) || $_SESSION["usuario"] !== "sa") {
     </style>
 </head>
 <body>
-    <?php include('Estilo\menu.php'); ?>
+    <?php include('Estilo/menu.php'); ?>
     
     <main class="CONTENIDO" id="contenido">
         <h1 class="titulo-principal">Cartelera Semanal</h1>
+
+        <!-- 🔽 Botón para descargar PDF -->
+        <div class="pdf-boton">
+            <a href="generar_pdf.php" target="_blank">
+                <button>🖨️ Descargar funciones de hoy en PDF</button>
+            </a>
+        </div>
         
         <?php
-        // Obtener la fecha seleccionada o usar la actual
         $fechaSeleccionada = isset($_GET['fecha']) ? new DateTime($_GET['fecha']) : new DateTime();
-        
-        // Ajustar al jueves anterior si no es jueves
         if ($fechaSeleccionada->format('N') != 4) {
             $fechaSeleccionada->modify('last thursday');
         }
-        
-        // Calcular fechas de la semana (jueves a miércoles)
+
         $jueves = clone $fechaSeleccionada;
         $miercoles = clone $jueves; $miercoles->modify('+6 days');
-        
-        // Formatear fechas para mostrar
+
         $formatoFecha = 'd/m/Y';
         $semanaTexto = "Semana del " . $jueves->format($formatoFecha) . " al " . $miercoles->format($formatoFecha);
         ?>
@@ -172,10 +185,8 @@ if (!isset($_SESSION["usuario"]) || $_SESSION["usuario"] !== "sa") {
         <div class="cartelera-columnas">
             <div class="columna-salas" id="columna-salas">
                 <?php
-                // Consulta para obtener todas las salas disponibles
                 $sqlSalas = "SELECT id_sala, nombre_sala FROM Sala ORDER BY nombre_sala";
                 $resultSalas = sqlsrv_query($conn, $sqlSalas);
-                
                 while($sala = sqlsrv_fetch_array($resultSalas, SQLSRV_FETCH_ASSOC)) {
                     echo '<div class="sala-item" data-sala-id="' . $sala['id_sala'] . '">' . $sala['nombre_sala'] . '</div>';
                 }
@@ -184,7 +195,6 @@ if (!isset($_SESSION["usuario"]) || $_SESSION["usuario"] !== "sa") {
             
             <div class="columna-funciones" id="columna-funciones">
                 <?php
-                // Consulta para obtener las funciones de la semana
                 $sqlFunciones = "SELECT 
                                     F.id_sala,
                                     P.titulo, 
@@ -203,14 +213,11 @@ if (!isset($_SESSION["usuario"]) || $_SESSION["usuario"] !== "sa") {
                 );
                 
                 $resultFunciones = sqlsrv_query($conn, $sqlFunciones, $params);
-                
-                // Organizar funciones por sala
                 $funcionesPorSala = array();
                 while($funcion = sqlsrv_fetch_array($resultFunciones, SQLSRV_FETCH_ASSOC)) {
                     $funcionesPorSala[$funcion['id_sala']][] = $funcion;
                 }
                 
-                // Mostrar funciones de la primera sala por defecto
                 $primeraSala = true;
                 foreach($funcionesPorSala as $idSala => $funciones) {
                     echo '<div class="funciones-sala" id="funciones-sala-' . $idSala . '" ' . ($primeraSala ? '' : 'style="display: none;"') . '>';
@@ -237,43 +244,27 @@ if (!isset($_SESSION["usuario"]) || $_SESSION["usuario"] !== "sa") {
         </div>
         
         <script>
-            // Cambiar semana
             function cambiarSemana(direccion) {
                 const urlParams = new URLSearchParams(window.location.search);
                 let fechaActual = urlParams.get('fecha') || new Date().toISOString().split('T')[0];
-                
                 let fecha = new Date(fechaActual);
                 if (fecha.getDay() !== 4) {
                     fecha.setDate(fecha.getDate() - ((fecha.getDay() + 3) % 7));
                 }
-                
                 fecha.setDate(fecha.getDate() + (direccion * 7));
                 window.location.href = `?fecha=${fecha.toISOString().split('T')[0]}`;
             }
-            
-            // Mostrar funciones de la sala seleccionada
+
             document.querySelectorAll('.sala-item').forEach(item => {
                 item.addEventListener('click', function() {
-                    // Remover clase active de todos los items
-                    document.querySelectorAll('.sala-item').forEach(i => {
-                        i.classList.remove('active');
-                    });
-                    
-                    // Añadir clase active al item clickeado
+                    document.querySelectorAll('.sala-item').forEach(i => i.classList.remove('active'));
                     this.classList.add('active');
-                    
-                    // Ocultar todas las funciones
-                    document.querySelectorAll('.funciones-sala').forEach(funciones => {
-                        funciones.style.display = 'none';
-                    });
-                    
-                    // Mostrar funciones de la sala seleccionada
+                    document.querySelectorAll('.funciones-sala').forEach(funciones => funciones.style.display = 'none');
                     const salaId = this.getAttribute('data-sala-id');
                     document.getElementById('funciones-sala-' + salaId).style.display = 'block';
                 });
             });
-            
-            // Activar la primera sala al cargar
+
             document.querySelector('.sala-item').click();
         </script>
     </main>
